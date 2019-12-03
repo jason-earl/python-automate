@@ -1,0 +1,7 @@
+#+TITLE:     Python Automation Class
+#+AUTHOR:    Jason Douglas Earl
+#+EMAIL:     jearl@notengoamigos.org
+
+* Python Automation
+
+  Let's learn a little python automation.
