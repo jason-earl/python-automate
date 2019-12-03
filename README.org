@@ -2,6 +2,8 @@
 #+AUTHOR:    Jason Douglas Earl
 #+EMAIL:     jearl@notengoamigos.org
 
-* Python Automation
+** Challenge 1
+   
+   Learn to setup a python environment.  Write your a unittest.
 
-  Let's learn a little python automation.
+  
