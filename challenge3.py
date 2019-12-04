@@ -15,6 +15,7 @@ def main():
         if "make" in href or "model" in href:
             print("{} - {}".format(link.text, href))
     driver.close()
+    driver.quit()
 
 if __name__ == '__main__':
     main()

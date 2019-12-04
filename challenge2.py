@@ -12,6 +12,7 @@ class TestExotics(unittest.TestCase):
 
     def tearDown(self):
         self.driver.close()
+        self.driver.quit()
 
     def test_exotics(self):
         self.driver.get("https://www.copart.com/")
