@@ -6,4 +6,6 @@
    
    Learn to setup a python environment.  Write your a unittest.
 
-  
+** Challenge 2
+
+   Learn to write basic unit tests using Selenium.
