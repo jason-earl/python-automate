@@ -9,3 +9,7 @@
 ** Challenge 2
 
    Learn to write basic unit tests using Selenium.
+
+** Challenge 3
+
+   Basic unit tests, now with a for loop.
