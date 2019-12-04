@@ -13,3 +13,8 @@
 ** Challenge 3
 
    Basic unit tests, now with a for loop.
+
+** Challenge 4
+
+   Fibonacci sequences and an in to English translator.  Complete with
+   66 tests.
