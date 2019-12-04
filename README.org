@@ -16,5 +16,10 @@
 
 ** Challenge 4
 
-   Fibonacci sequences and an in to English translator.  Complete with
-   66 tests.
+   Fibonacci sequences and an int to English translator.  Complete
+   with 66 tests.
+
+** Challenge 5
+
+   I think I was supposed to learn about if statements.  I mostly
+   learned about defaultdict.
