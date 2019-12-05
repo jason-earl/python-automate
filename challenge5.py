@@ -7,11 +7,17 @@ from selenium.webdriver.common.keys import Keys
 
 def main():
     models = defaultdict(int)
-    driver = webdriver.Chrome("venv/chromedriver")
+    driver = webdriver.Firefox()
     driver.get("https://www.copart.com/")
     driver.find_element_by_id("input-search").click()
     driver.find_element_by_id("input-search").send_keys("porsche")
     driver.find_element_by_id("input-search").send_keys(Keys.ENTER)
+    # Gecko likes a click as well
+    search_form = driver.find_element_by_id("search-form")
+    buttons = search_form.find_elements_by_tag_name("button")
+    for button in buttons:
+        if "Search" in button.text:
+            button.click()
     time.sleep(10)
     dropdown = driver.find_element_by_name("serverSideDataTable_length")
     dropdown.find_element_by_xpath("//option[. = '100']").click()
