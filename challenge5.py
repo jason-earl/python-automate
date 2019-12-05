@@ -6,6 +6,12 @@ from collections import defaultdict
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
+DAMAGE_TYPES = {'REAR END': 0,
+                'FRONT END': 1,
+                'MINOR DENT/SCRATCHES': 2,
+                'UNDERCARRIAGE': 3,
+                'MISC': 4}
+
 def main():
     models = defaultdict(int)
     os.environ['MOZ_HEADLESS'] = '1'
@@ -33,31 +39,14 @@ def main():
     # print Models (sorted)
     for key, val in sorted(models.items()):
         print("{}: {}".format(key, val))
-    rear_end = 0
-    front_end = 0
-    minor_dent = 0
-    under_carriage = 0
-    misc = 0
+    damage_totals = defaultdict(int)
     for span in spans:
         if span.get_attribute('data-uname') == 'lotsearchLotdamagedescription':
-            # These if statements are a waste of time.  I should do
-            # this like I did models.
-            if span.text == 'REAR END':
-                rear_end += 1
-            elif span.text == 'FRONT END':
-                front_end += 1
-            elif span.text == 'MINOR DENT/SCRATCHES':
-                minor_dent += 1
-            elif span.text == 'UNDERCARRIAGE':
-                under_carriage += 1
-            else:
-                misc += 1
+            damage_type = DAMAGE_TYPES.get(span.text, 4)
+            damage_totals[damage_type] += 1
     print("********************DAMAGE********************")
-    print("REAR END: ", rear_end)
-    print("FRONT END: ", front_end)
-    print("MINOR DENT/SCRATCHES: ", minor_dent)
-    print("UNDERCARRIAGE: ", under_carriage)
-    print("MISC: ", misc)
+    for damage_type in DAMAGE_TYPES:
+        print("{}: {}".format(damage_type, damage_totals[DAMAGE_TYPES[damage_type]]))
     driver.close()
     driver.quit()
 
