@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import os
 import time
 from collections import defaultdict
 from selenium import webdriver
@@ -7,6 +8,7 @@ from selenium.webdriver.common.keys import Keys
 
 def main():
     models = defaultdict(int)
+    os.environ['MOZ_HEADLESS'] = '1'
     driver = webdriver.Firefox()
     driver.get("https://www.copart.com/")
     driver.find_element_by_id("input-search").click()
