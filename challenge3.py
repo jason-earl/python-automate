@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
+import os
 import time
 from selenium import webdriver
 
-
 def main():
-    driver = webdriver.Chrome("venv/chromedriver")
+    os.environ['MOZ_HEADLESS'] = '1'
+    driver = webdriver.Firefox()
     driver.get("https://www.copart.com/")
     time.sleep(1)
     trending = driver.find_element_by_id("tabTrending")

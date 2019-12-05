@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import os
 import time
 from collections import defaultdict
 from selenium import webdriver
@@ -7,12 +8,13 @@ from selenium.webdriver.common.keys import Keys
 
 def main():
     models = defaultdict(int)
-    driver = webdriver.Chrome("venv/chromedriver")
+    #os.environ['MOZ_HEADLESS'] = '1'
+    driver = webdriver.Firefox()
     driver.get("https://www.copart.com/")
     driver.find_element_by_id("input-search").click()
     driver.find_element_by_id("input-search").send_keys("porsche")
     driver.find_element_by_id("input-search").send_keys(Keys.ENTER)
-    time.sleep(5)
+    time.sleep(10)
     dropdown = driver.find_element_by_name("serverSideDataTable_length")
     dropdown.find_element_by_xpath("//option[. = '100']").click()
     time.sleep(5)

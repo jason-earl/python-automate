@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import os
 import time
 import unittest
 from selenium import webdriver
@@ -8,7 +9,8 @@ from selenium.webdriver.common.keys import Keys
 
 class TestExotics(unittest.TestCase):
     def setUp(self):
-        self.driver = webdriver.Chrome("venv/chromedriver")
+        os.environ['MOZ_HEADLESS'] = '1'
+        self.driver = webdriver.Firefox()
 
     def tearDown(self):
         self.driver.close()

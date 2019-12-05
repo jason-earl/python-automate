@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 
+import os
 import unittest
 from selenium import webdriver
 
 class Challenge1(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Chrome("venv/chromedriver")
+        os.environ['MOZ_HEADLESS'] = '1'
+        self.driver = webdriver.Firefox()
 
     def tearDown(self):
         self.driver.close()
