@@ -4,6 +4,8 @@ import os
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.ui import WebDriverWait
 
 
@@ -22,8 +24,8 @@ class TestExotics(unittest.TestCase):
         input_search.click()
         input_search.send_keys("exotics")
         input_search.send_keys(Keys.ENTER)
-        WebDriverWait(self.driver, 20).until(
-            lambda x: x.find_element_by_xpath("//*[@id=\"serverSideDataTable\"]//td").is_displayed())
+        wait = WebDriverWait(self.driver, 20)
+        wait.until(ec.visibility_of_element_located((By.XPATH, "//*[@id=\"serverSideDataTable\"]//td")))
         table = self.driver.find_element_by_id("serverSideDataTable")
         self.assertIn("PORSCHE", table.text)
 

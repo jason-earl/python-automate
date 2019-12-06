@@ -2,6 +2,8 @@
 
 import os
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.ui import WebDriverWait
 
 def main():
@@ -9,8 +11,8 @@ def main():
     driver = webdriver.Firefox()
     driver.get("https://www.copart.com/")
     print("Waiting for page.")
-    WebDriverWait(driver, 20).until(
-        lambda x: x.find_element_by_xpath("//*[@id=\"tabTrending\"]//a"))
+    wait = WebDriverWait(driver, 20)
+    wait.until(ec.visibility_of_element_located((By.XPATH, "//*[@id=\"tabTrending\"]//a")))
     print("done waiting.")
     trending = driver.find_element_by_id("tabTrending")
     links = trending.find_elements_by_tag_name("a")

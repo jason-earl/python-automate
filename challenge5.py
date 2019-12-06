@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
 import os
-import time
 from collections import defaultdict
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.ui import WebDriverWait
 
 DAMAGE_TYPES = {'REAR END': 0,
@@ -29,13 +30,16 @@ def main():
         if "Search" in button.text:
             button.click()
     print("Waitng for search results")
-    WebDriverWait(driver, 20).until(
-        lambda x: x.find_element_by_xpath("//*[@id=\"serverSideDataTable\"]//td").is_displayed())
+    wait = WebDriverWait(driver, 20)
+    wait.until(ec.visibility_of_element_located((By.XPATH, "//*[@id=\"serverSideDataTable\"]//td")))
+    print("done waiting for search results")
     dropdown = driver.find_element_by_name("serverSideDataTable_length")
     dropdown.find_element_by_xpath("//option[. = '100']").click()
     print("Switching to 100 entries.")
-    WebDriverWait(driver, 20).until(
-        lambda x: x.find_element_by_xpath("//*[@id=\"serverSideDataTable\"]//tr[100]/td[1]").is_displayed())
+    wait = WebDriverWait(driver, 20)
+    wait.until(ec.visibility_of_element_located(
+        (By.XPATH, "//*[@id=\"serverSideDataTable\"]//tr[100]/td[1]")))
+    print("Done switching to 100 entries.")
     table = driver.find_element_by_id("serverSideDataTable")
     spans = table.find_elements_by_tag_name("span")
     for span in spans:
