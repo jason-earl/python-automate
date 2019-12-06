@@ -4,15 +4,18 @@
 
 ** Challenge 1
    
-   Learn to setup a python environment.  Write your a unittest.
+   Learn to setup a python environment.  Write a unittest.
 
 ** Challenge 2
 
-   Learn to write basic unit tests using Selenium.
+   Learn to write basic unit tests using Selenium.  Learning to wait
+   is key.
 
 ** Challenge 3
 
-   Basic unit tests, now with a for loop.
+   This challenge is not currently set up as a unittest.  It does use
+   the requisite for loop.  I probably shouldn't get so far ahead.  It
+   becomes clearer what is required after you go to the class.
 
 ** Challenge 4
 
