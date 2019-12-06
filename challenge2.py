@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 import os
-import time
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 class TestExotics(unittest.TestCase):
@@ -22,7 +22,8 @@ class TestExotics(unittest.TestCase):
         input_search.click()
         input_search.send_keys("exotics")
         input_search.send_keys(Keys.ENTER)
-        time.sleep(5)
+        WebDriverWait(self.driver, 20).until(
+            lambda x: x.find_element_by_xpath("//*[@id=\"serverSideDataTable\"]//td").is_displayed())
         table = self.driver.find_element_by_id("serverSideDataTable")
         self.assertIn("PORSCHE", table.text)
 

@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 
 import os
-import time
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
 
 def main():
     os.environ['MOZ_HEADLESS'] = '1'
     driver = webdriver.Firefox()
     driver.get("https://www.copart.com/")
-    time.sleep(1)
+    print("Waiting for page.")
+    WebDriverWait(driver, 20).until(
+        lambda x: x.find_element_by_xpath("//*[@id=\"tabTrending\"]//a"))
+    print("done waiting.")
     trending = driver.find_element_by_id("tabTrending")
     links = trending.find_elements_by_tag_name("a")
     for link in links:

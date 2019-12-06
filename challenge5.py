@@ -5,6 +5,7 @@ import time
 from collections import defaultdict
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
 
 DAMAGE_TYPES = {'REAR END': 0,
                 'FRONT END': 1,
@@ -17,19 +18,24 @@ def main():
     os.environ['MOZ_HEADLESS'] = '1'
     driver = webdriver.Firefox()
     driver.get("https://www.copart.com/")
-    driver.find_element_by_id("input-search").click()
-    driver.find_element_by_id("input-search").send_keys("porsche")
-    driver.find_element_by_id("input-search").send_keys(Keys.ENTER)
+    input_search = driver.find_element_by_id("input-search")
+    input_search.click()
+    input_search.send_keys("porsche")
+    input_search.send_keys(Keys.ENTER)
     # Gecko likes a click as well
     search_form = driver.find_element_by_id("search-form")
     buttons = search_form.find_elements_by_tag_name("button")
     for button in buttons:
         if "Search" in button.text:
             button.click()
-    time.sleep(10)
+    print("Waitng for search results")
+    WebDriverWait(driver, 20).until(
+        lambda x: x.find_element_by_xpath("//*[@id=\"serverSideDataTable\"]//td").is_displayed())
     dropdown = driver.find_element_by_name("serverSideDataTable_length")
     dropdown.find_element_by_xpath("//option[. = '100']").click()
-    time.sleep(5)
+    print("Switching to 100 entries.")
+    WebDriverWait(driver, 20).until(
+        lambda x: x.find_element_by_xpath("//*[@id=\"serverSideDataTable\"]//tr[100]/td[1]").is_displayed())
     table = driver.find_element_by_id("serverSideDataTable")
     spans = table.find_elements_by_tag_name("span")
     for span in spans:
