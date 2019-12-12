@@ -25,9 +25,11 @@ class TestExotics(unittest.TestCase):
         input_search.send_keys("exotics")
         input_search.send_keys(Keys.ENTER)
         wait = WebDriverWait(self.driver, 20)
-        wait.until(ec.visibility_of_element_located((By.XPATH, "//*[@id=\"serverSideDataTable\"]//td")))
+        wait.until(ec.visibility_of_element_located(
+            (By.XPATH, "//*[@id=\"serverSideDataTable\"]//td")))
         table = self.driver.find_element_by_id("serverSideDataTable")
         self.assertIn("PORSCHE", table.text)
+
 
 if __name__ == '__main__':
     unittest.main()
