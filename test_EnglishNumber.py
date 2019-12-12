@@ -138,8 +138,8 @@ class EnglishNumberTests(unittest.TestCase):
         self.assertEqual(int_to_english(9999), 'nine thousand nine hundred ninety nine')
 
     def test_really_big_number(self):
-        self.assertEqual(int_to_english(12111111111),
-                         'twelve billion one hundred eleven million one hundred eleven thousand one hundred eleven')
+        self.assertEqual(int_to_english(15512111111111),
+                         'fifteen trillion five hundred twelve billion one hundred eleven million one hundred eleven thousand one hundred eleven')
 
 if __name__ == '__main__':
     unittest.main()

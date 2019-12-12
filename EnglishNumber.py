@@ -38,6 +38,15 @@ def int_to_english(num):
     thousands = num // 1000
     millions = num // 1000000
     billions = num // 1000000000
+    trillions = num // 1000000000000
+    if trillions > 0:
+        english.append(int_to_english(trillions))
+        english.append("trillion")
+        num = num % 1000000000000
+        hundreds = num // 100
+        thousands = num // 1000
+        millions = num // 1000000
+        billions = num // 1000000000
     if billions > 0:
         english.append(int_to_english(billions))
         english.append("billion")

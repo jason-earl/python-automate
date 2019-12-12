@@ -4,7 +4,7 @@ from Fib import fib
 from EnglishNumber import int_to_english
 
 def main():
-    for i in range(60):
+    for i in range(70):
         fibber = fib(i)
         print("{}: {}, {}".format(i, fibber, int_to_english(fibber)))
 
